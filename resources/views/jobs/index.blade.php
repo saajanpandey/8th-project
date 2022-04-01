@@ -42,7 +42,16 @@
                                     S.N
                                 </th>
                                 <th>
-                                    Name
+                                    Job Title
+                                </th>
+                                <th>
+                                    Job Company
+                                </th>
+                                <th>
+                                    Expiry Date
+                                </th>
+                                <th>
+                                    Status
                                 </th>
                             </tr>
                         </thead>
@@ -54,30 +63,34 @@
                                         {{ $i++ }}
                                     </td>
                                     <td>
-                                        <a>
-
-                                        </a>
+                                        {{ $job->title ?? '-' }}
                                     </td>
-                                    {{-- <td class="project-state">
-                                    @if ($city->status == 1)
-                                        <span class="badge badge-success">Enable</span>
-                                    @elseif ($city->status == 0)
-                                        <span class="badge badge-danger">Disable</span>
-                                    @endif
-                                </td> --}}
-                                    {{-- <td class="project-actions text-right">
-                                    <a class="btn btn-info btn-sm" href="{{ route('city.edit', $city->id) }}">
-                                        <i class="fas fa-pencil-alt">
-                                        </i>
-                                        Edit
-                                    </a>
-                                    <button type="button" class="btn btn-danger btn-sm"
-                                        data-action="{{ route('city.destroy', $city->id) }}" data-toggle="modal"
-                                        data-target="#deleteCity">
-                                        <i class="fas fa-trash"></i>
-                                        Delete
-                                    </button>
-                                </td> --}}
+                                    <td>
+                                        {{ $job->company->company_name ?? '-' }}
+                                    </td>
+                                    <td>
+                                        {{ $job->expiry_date ?? '-' }}
+                                    </td>
+                                    <td>
+                                        @if ($job->status == 1)
+                                            <span class="badge badge-success">Enable</span>
+                                        @elseif ($job->status == 0)
+                                            <span class="badge badge-danger">Disable</span>
+                                        @endif
+                                    </td>
+                                    <td class="project-actions text-right">
+                                        <a class="btn btn-info btn-sm" href="{{ route('job.edit', $job->id) }}">
+                                            <i class="fas fa-pencil-alt">
+                                            </i>
+                                            Edit
+                                        </a>
+                                        <button type="button" class="btn btn-danger btn-sm"
+                                            data-action="{{ route('job.destroy', $job->id) }}" data-toggle="modal"
+                                            data-target="#deleteJob">
+                                            <i class="fas fa-trash"></i>
+                                            Delete
+                                        </button>
+                                    </td>
                                 </tr>
                             @endforeach
 
@@ -94,7 +107,7 @@
             {!! $jobs->links() !!}
         </div>
 
-        <div class="modal fade" id="deleteCity" data-backdrop="static" tabindex="-1" role="dialog"
+        <div class="modal fade" id="deleteJob" data-backdrop="static" tabindex="-1" role="dialog"
             aria-labelledby="deleteCategory" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -124,7 +137,7 @@
 @endsection
 @section('scripts')
     <script>
-        $('#deleteCity').on('show.bs.modal', function(event) {
+        $('#deleteJob').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget);
             var action = button.data('action');
             var modal = $(this);

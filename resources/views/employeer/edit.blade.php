@@ -164,3 +164,10 @@
         </section>
     </div>
 @endsection
+@section('scripts')
+    <script>
+        $('#summernote').summernote({
+            height: 400,
+        })
+    </script>
+@endsection

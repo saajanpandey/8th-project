@@ -28,19 +28,54 @@
                         @csrf
                         <div class="form-group">
                             <label for="inputName">Job Title</label>
-                            <input type="text" id="inputName" class="form-control @error('first_name') is-invalid @enderror"
-                                name="first_name">
-                            @error('first_name')
+                            <input type="text" id="inputName" class="form-control @error('title') is-invalid @enderror"
+                                name="title">
+                            @error('title')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="inputName">Last Name</label>
-                            <input type="text" id="inputName" class="form-control @error('last_name') is-invalid @enderror"
-                                name="last_name">
-                            @error('last_name')
+                            <label for="inputName">Company</label>
+                            <select class="custom-select form-control @error('company_id') is-invalid @enderror"
+                                name="company_id">
+                                <option selected disabled>Select Company</option>
+                                @foreach ($companies as $company)
+                                    <option value="{{ $company->id }}">{{ $company->company_name }}</option>
+                                @endforeach
+                            </select>
+                            @error('company_id')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="inputName">Job Type</label>
+                            <select class="custom-select form-control @error('type_id') is-invalid @enderror"
+                                name="type_id">
+                                <option selected disabled>Select Job Type</option>
+                                @foreach ($jobTypes as $jobType)
+                                    <option value="{{ $jobType->id }}">{{ $jobType->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('type_id')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="inputName">Job Category</label>
+                            <select class="custom-select form-control @error('category_id') is-invalid @enderror"
+                                name="category_id">
+                                <option selected disabled>Select Category</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('category_id')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -48,36 +83,36 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="inputName">Email</label>
-                            <input type="text" id="inputName" class="form-control @error('email') is-invalid @enderror"
-                                name="email">
-                            @error('email')
+                            <label for="inputName">Experience</label>
+                            <input type="number" id="inputName"
+                                class="form-control @error('experience') is-invalid @enderror" name="experience">
+                            @error('experience')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="inputName">Company Name</label>
-                            <input type="text" id="inputName"
-                                class="form-control @error('company_name') is-invalid @enderror" name="company_name">
-                            @error('company_name')
+                            <label for="inputName">Openings</label>
+                            <input type="number" id="inputName" class="form-control @error('openings') is-invalid @enderror"
+                                name="openings">
+                            @error('openings')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="inputName">Location</label>
-                            <input type="text" id="inputName" class="form-control @error('location') is-invalid @enderror"
-                                name="location">
-                            @error('location')
+                            <label for="inputName">Expiry Date</label>
+                            <input type="text" id="date" class="form-control @error('expiry_date') is-invalid @enderror"
+                                name="expiry_date">
+                            @error('expiry_date')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
                         </div>
-                        {{-- <div class="form-group">
+                        <div class="form-group">
                             <label for="inputName">City</label>
                             <select class="custom-select form-control @error('city_id') is-invalid @enderror"
                                 name="city_id">
@@ -91,40 +126,20 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                        </div> --}}
+                        </div>
                         <div class="form-group">
-                            <label for="inputName">Phone Number</label>
-                            <input type="text" id="inputName" class="form-control @error('contact') is-invalid @enderror"
-                                name="contact">
-                            @error('contact')
+                            <label for="inputName">Salary</label>
+                            <input type="text" id="inputName" class="form-control @error('salary') is-invalid @enderror"
+                                name="salary">
+                            @error('salary')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="inputName">Website</label>
-                            <input type="text" id="inputName" class="form-control @error('website') is-invalid @enderror"
-                                name="website">
-                            @error('website')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="inputName">PAN Number</label>
-                            <input type="text" id="inputName" class="form-control @error('pan_number') is-invalid @enderror"
-                                name="pan_number">
-                            @error('pan_number')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="inputName">Company Description</label>
-                            <textarea id="summernote" name="description">
+                            <label for="inputName">Job Description</label>
+                            <textarea id="jobD" name="description" class="form-control @error('description') is-invalid @enderror">
 
                               </textarea>
                             @error('description')
@@ -134,21 +149,11 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="inputName">Password</label>
-                            <input type="password" id="inputName"
-                                class="form-control @error('password') is-invalid @enderror" name="password">
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="inputName">Confirm Password</label>
-                            <input type="password" id="inputName"
-                                class="form-control @error('confirm_password') is-invalid @enderror"
-                                name="password_confirmation">
-                            @error('confirm_password')
+                            <label for="inputName">Job Specification</label>
+                            <textarea id="specification" name="specification" class="form-control @error('specification') is-invalid @enderror">
+
+                              </textarea>
+                            @error('specification')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -173,7 +178,7 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <a href="{{ route('employeer.index') }}" class="btn btn-secondary">Cancel</a>
+                    <a href="{{ route('job.index') }}" class="btn btn-secondary">Cancel</a>
                     <input type="submit" value="Create" class="btn btn-success float-right">
                 </div>
             </div>
@@ -181,4 +186,25 @@
             </form>
         </section>
     </div>
+@endsection
+@section('scripts')
+    <script>
+        $('#date').daterangepicker({
+            singleDatePicker: true,
+            "locale": {
+                "format": "YYYY-MM-DD",
+            },
+            autoApply: true,
+        });
+
+        $('#specification').summernote({
+            height: 400,
+            placeholder: 'Company Description goes here..',
+        })
+        $('#jobD').summernote({
+            height: 400,
+            placeholder: 'Company Description goes here..',
+        })
+    </script>
+
 @endsection

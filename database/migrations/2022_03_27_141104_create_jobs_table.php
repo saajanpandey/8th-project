@@ -16,8 +16,8 @@ class CreateJobsTable extends Migration
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->text('description');
-            $table->text('specification');
+            $table->text('description')->nullable();
+            $table->text('specification')->nullable();
             $table->unsignedBigInteger('company_id');
             $table->unsignedBigInteger('type_id');
             $table->unsignedBigInteger('city_id');
@@ -26,6 +26,7 @@ class CreateJobsTable extends Migration
             $table->date('expiry_date');
             $table->unsignedInteger('openings');
             $table->string('salary');
+            $table->boolean('status');
             $table->timestamps();
         });
     }

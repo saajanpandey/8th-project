@@ -40,7 +40,7 @@ class EmployeerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EmployeerRequest $request)
     {
         // dd($request->all());
         $data = $request->except('_token');

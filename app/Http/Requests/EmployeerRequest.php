@@ -45,4 +45,10 @@ class EmployeerRequest extends FormRequest
             'description' => ['required', 'string', 'max:255'],
         ];
     }
+    public function attributes()
+    {
+        return [
+            'city_id' => 'city',
+        ];
+    }
 }

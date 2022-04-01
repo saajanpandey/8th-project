@@ -76,12 +76,6 @@
 <script src="{{ asset('plugins/sweetalert2/sweetalert2.min.js') }}"></script>
 
 <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
-<script>
-    $('#summernote').summernote({
-        height: 200,
-        placeholder: 'Company Description goes here..',
-    })
-</script>
 @if (Session::has('delete'))
     <script>
         var Toast = Swal.mixin({

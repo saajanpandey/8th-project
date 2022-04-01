@@ -3,7 +3,12 @@
 namespace App\Http\Controllers\job;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\JobRequest;
+use App\Models\City;
+use App\Models\Employeer;
 use App\Models\Job;
+use App\Models\JobCategories;
+use App\Models\JobType;
 use Illuminate\Http\Request;
 
 class JobController extends Controller
@@ -26,7 +31,11 @@ class JobController extends Controller
      */
     public function create()
     {
-        return view('jobs.create');
+        $companies = Employeer::orderBy('company_name', 'ASC')->where('status', true)->get();
+        $jobTypes = JobType::orderBy('name', 'ASC')->get();
+        $categories = JobCategories::orderBy('name', 'ASC')->get();
+        $cities = City::orderBy('name', 'ASC')->get();
+        return view('jobs.create', compact('companies', 'jobTypes', 'categories', 'cities'));
     }
 
     /**
@@ -35,9 +44,11 @@ class JobController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(JobRequest $request)
     {
-        //
+        $data = $request->except('_token');
+        Job::create($data);
+        return redirect()->route('job.index')->with('create', '');
     }
 
     /**
@@ -59,7 +70,12 @@ class JobController extends Controller
      */
     public function edit($id)
     {
-        //
+        $job = Job::find($id);
+        $companies = Employeer::orderBy('company_name', 'ASC')->where('status', true)->get();
+        $jobTypes = JobType::orderBy('name', 'ASC')->get();
+        $categories = JobCategories::orderBy('name', 'ASC')->get();
+        $cities = City::orderBy('name', 'ASC')->get();
+        return view('jobs.edit', compact('job', 'companies', 'jobTypes', 'categories', 'cities'));
     }
 
     /**
@@ -71,7 +87,10 @@ class JobController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $job = Job::find($id);
+        $data = $request->except('_token');
+        $job->fill($data)->save();
+        return redirect()->route('job.index')->with('update', '');
     }
 
     /**

@@ -60,8 +60,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
 
         Route::get('/jobs', [JobController::class, 'index'])->name('job.index');
         Route::get('/jobs/create', [JobController::class, 'create'])->name('job.create');
+        Route::get('jobs/edit/{id}', [JobController::class, 'edit'])->name('job.edit');
         Route::post('/jobs/store', [JobController::class, 'store'])->name('job.store');
-        // Route::put('/jobs', [JobController::class, 'index']);
+        Route::put('/jobs/{id}', [JobController::class, 'update'])->name('job.update');
         Route::delete('/jobs/{id}', [JobController::class, 'destroy'])->name('job.destroy');
     });
 });

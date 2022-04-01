@@ -124,7 +124,7 @@
                         </div>
                         <div class="form-group">
                             <label for="inputName">Company Description</label>
-                            <textarea id="summernote" name="description">
+                            <textarea id="summernote" name="description" class="form-control @error('description') is-invalid @enderror">
 
                               </textarea>
                             @error('description')
@@ -181,4 +181,11 @@
             </form>
         </section>
     </div>
+@endsection
+@section('scripts')
+    <script>
+        $('#summernote').summernote({
+            height: 400,
+        })
+    </script>
 @endsection
