@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminChangePasswordController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\city\CityController;
 use App\Http\Controllers\employeer\EmployeerController;
+use App\Http\Controllers\job\JobController;
 use App\Http\Controllers\jobCategories\JobCategoriesController;
 use App\Http\Controllers\jobType\JobTypeController;
 use App\Models\JobCategories;
@@ -44,7 +45,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::get('/jobtypes', [JobTypeController::class, 'index'])->name('jobtype.index');
 
         Route::get('/cities', [CityController::class, 'index'])->name('city.index');
-    
+
         Route::get('employeers', [EmployeerController::class, 'index'])->name('employeer.index');
         Route::get('employeers/create', [EmployeerController::class, 'create'])->name('employeer.create');
         Route::get('employeers/edit/{id}', [EmployeerController::class, 'edit'])->name('employeer.edit');
@@ -56,5 +57,11 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::delete('employeers/{id}', [EmployeerController::class, 'destroy'])->name('employeer.destroy');
 
         Route::get('job-categories', [JobCategoriesController::class, 'index'])->name('categories.index');
+
+        Route::get('/jobs', [JobController::class, 'index'])->name('job.index');
+        Route::get('/jobs/create', [JobController::class, 'create'])->name('job.create');
+        Route::post('/jobs/store', [JobController::class, 'store'])->name('job.store');
+        // Route::put('/jobs', [JobController::class, 'index']);
+        Route::delete('/jobs/{id}', [JobController::class, 'destroy'])->name('job.destroy');
     });
 });

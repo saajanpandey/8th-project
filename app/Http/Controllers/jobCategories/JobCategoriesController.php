@@ -16,7 +16,7 @@ class JobCategoriesController extends Controller
      */
     public function index()
     {
-        $categories = JobCategories::paginate(10);
+        $categories = JobCategories::orderBy('name', 'ASC')->paginate(10);
         return view('jobCategories.index', compact('categories'));
     }
 
@@ -38,9 +38,6 @@ class JobCategoriesController extends Controller
      */
     public function store(JobCategoriesRequest $request)
     {
-        $data = $request->except('_token');
-        JobCategories::create($data);
-        return redirect()->route('categories.index')->with('create', '');
     }
 
     /**
@@ -62,8 +59,6 @@ class JobCategoriesController extends Controller
      */
     public function edit($id)
     {
-        $category = JobCategories::find($id);
-        return view('jobCategories.edit', compact('category'));
     }
 
     /**
@@ -75,10 +70,6 @@ class JobCategoriesController extends Controller
      */
     public function update(JobCategoriesRequest $request, $id)
     {
-        $data = $request->except('_token');
-        $category = JobCategories::find($id);
-        $category->fill($data)->save();
-        return redirect()->route('categories.index')->with('update', '');
     }
 
     /**
@@ -89,8 +80,5 @@ class JobCategoriesController extends Controller
      */
     public function destroy($id)
     {
-        $category = JobCategories::find($id);
-        $category->delete();
-        return redirect()->route('categories.index')->with('delete', '');
     }
 }

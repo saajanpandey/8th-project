@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\jobType;
+namespace App\Http\Controllers\job;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\JobTypeRequest;
-use App\Models\JobType;
+use App\Models\Job;
 use Illuminate\Http\Request;
 
-class JobTypeController extends Controller
+class JobController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,8 @@ class JobTypeController extends Controller
      */
     public function index()
     {
-        $types = JobType::paginate(10);
-        return view('jobType.index', compact('types'));
+        $jobs = Job::paginate(10);
+        return view('jobs.index', compact('jobs'));
     }
 
     /**
@@ -27,6 +26,7 @@ class JobTypeController extends Controller
      */
     public function create()
     {
+        return view('jobs.create');
     }
 
     /**
@@ -35,8 +35,9 @@ class JobTypeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(JobTypeRequest $request)
+    public function store(Request $request)
     {
+        //
     }
 
     /**
@@ -58,6 +59,7 @@ class JobTypeController extends Controller
      */
     public function edit($id)
     {
+        //
     }
 
     /**
@@ -67,8 +69,9 @@ class JobTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(JobTypeRequest $request, $id)
+    public function update(Request $request, $id)
     {
+        //
     }
 
     /**
@@ -79,5 +82,8 @@ class JobTypeController extends Controller
      */
     public function destroy($id)
     {
+        $job = Job::find($id);
+        $job->delete();
+        return redirect()->route('job.index')->with('delete', '');
     }
 }
