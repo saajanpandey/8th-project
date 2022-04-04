@@ -48,6 +48,9 @@
                                     Job Company
                                 </th>
                                 <th>
+                                    Job Type
+                                </th>
+                                <th>
                                     Expiry Date
                                 </th>
                                 <th>
@@ -67,6 +70,9 @@
                                     </td>
                                     <td>
                                         {{ $job->company->company_name ?? '-' }}
+                                    </td>
+                                    <td>
+                                        {{ $job->type->name ?? '-' }}
                                     </td>
                                     <td>
                                         {{ $job->expiry_date ?? '-' }}

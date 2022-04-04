@@ -24,7 +24,7 @@
                     <h3 class="card-title">Edit Employer</h3>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('employeer.update', $employeer->id) }}">
+                    <form method="POST" action="{{ route('employer.update', $employeer->id) }}">
                         @csrf
                         @method('PUT')
                         <div class="form-group">
@@ -155,7 +155,7 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <a href="{{ route('employeer.index') }}" class="btn btn-secondary">Cancel</a>
+                    <a href="{{ route('employer.index') }}" class="btn btn-secondary">Cancel</a>
                     <input type="submit" value="Update" class="btn btn-success float-right">
                 </div>
             </div>

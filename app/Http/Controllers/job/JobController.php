@@ -85,7 +85,7 @@ class JobController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(JobRequest $request, $id)
     {
         $job = Job::find($id);
         $data = $request->except('_token');

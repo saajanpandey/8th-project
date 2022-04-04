@@ -24,7 +24,7 @@
                     <h3 class="card-title">Add Employer</h3>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('employeer.store') }}">
+                    <form method="POST" action="{{ route('employer.store') }}">
                         @csrf
                         <div class="form-group">
                             <label for="inputName">First Name</label>
@@ -173,7 +173,7 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <a href="{{ route('employeer.index') }}" class="btn btn-secondary">Cancel</a>
+                    <a href="{{ route('employer.index') }}" class="btn btn-secondary">Cancel</a>
                     <input type="submit" value="Create" class="btn btn-success float-right">
                 </div>
             </div>

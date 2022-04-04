@@ -28,7 +28,7 @@
                 <div class="card-header">
                     <h3 class="card-title">Employers</h3>
                     <div class="card-tools">
-                        <a class="btn btn-primary btn-block btn-sm" href="{{ route('employeer.create') }}">
+                        <a class="btn btn-primary btn-block btn-sm" href="{{ route('employer.create') }}">
                             <i class="fas fa-plus"></i>
                             Add New
                         </a>
@@ -78,32 +78,32 @@
                                     </td>
                                     <td class="project-actions text-right">
                                         <a class="btn btn-primary btn-sm"
-                                            href="{{ route('employeer.show', $employeer->id) }}">
+                                            href="{{ route('employer.show', $employeer->id) }}">
                                             <i class="fas fa-eye"></i>
                                             View
                                         </a>
                                         <a class="btn btn-info btn-sm"
-                                            href="{{ route('employeer.edit', $employeer->id) }}">
+                                            href="{{ route('employer.edit', $employeer->id) }}">
                                             <i class="fas fa-pencil-alt">
                                             </i>
                                             Edit
                                         </a>
                                         <button type="button" class="btn btn-danger btn-sm"
-                                            data-action="{{ route('employeer.destroy', $employeer->id) }}"
+                                            data-action="{{ route('employer.destroy', $employeer->id) }}"
                                             data-toggle="modal" data-target="#deleteEmployeer">
                                             <i class="fas fa-trash"></i>
                                             Delete
                                         </button>
 
                                         <button type="button" class="btn btn-secondary btn-sm"
-                                            data-action="{{ route('employeer.logo', $employeer->id) }}"
-                                            data-toggle="modal" data-target="#imageUpload">
+                                            data-action="{{ route('employer.logo', $employeer->id) }}" data-toggle="modal"
+                                            data-target="#imageUpload">
                                             <i class="fas fa-upload"></i>
                                             Upload Logo
                                         </button>
 
                                         <button type="button" class="btn btn-secondary btn-sm"
-                                            data-action="{{ route('employeer.pan', $employeer->id) }}" data-toggle="modal"
+                                            data-action="{{ route('employer.pan', $employeer->id) }}" data-toggle="modal"
                                             data-target="#panUploads">
                                             <i class="fas fa-upload"></i>
                                             Upload PAN

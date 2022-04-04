@@ -46,7 +46,7 @@ class EmployeerController extends Controller
         $data = $request->except('_token');
         $data['password'] = Hash::make($request->password);
         Employeer::create($data);
-        return redirect()->route('employeer.index')->with('create', '');
+        return redirect()->route('employer.index')->with('create', '');
     }
 
     /**
@@ -87,7 +87,7 @@ class EmployeerController extends Controller
         $data = $request->except('_token');
         $employeer->fill($data);
         $employeer->save();
-        return redirect()->route('employeer.index')->with('update', '');
+        return redirect()->route('employer.index')->with('update', '');
     }
 
     /**
@@ -108,7 +108,7 @@ class EmployeerController extends Controller
             File::delete($pan);
         }
         $employeer->delete();
-        return redirect()->route('employeer.index')->with('delete', '');
+        return redirect()->route('employer.index')->with('delete', '');
     }
 
     public function logoUpload(Request $request, $id)
@@ -130,7 +130,7 @@ class EmployeerController extends Controller
         $image->move($destinationPath, $name);
         $employeer->image = $name;
         $employeer->save();
-        return redirect()->route('employeer.index')->with('image', '');
+        return redirect()->route('employer.index')->with('image', '');
     }
     public function panUpload(Request $request, $id)
     {
@@ -151,6 +151,6 @@ class EmployeerController extends Controller
         $image->move($destinationPath, $name);
         $employeer->pan_image = $name;
         $employeer->save();
-        return redirect()->route('employeer.index')->with('image', '');
+        return redirect()->route('employer.index')->with('image', '');
     }
 }

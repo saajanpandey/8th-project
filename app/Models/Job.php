@@ -15,4 +15,16 @@ class Job extends Model
     {
         return $this->belongsTo(Employeer::class, 'company_id', 'id');
     }
+    public function city()
+    {
+        return $this->belongsTo(City::class, 'city_id', 'id');
+    }
+    public function type()
+    {
+        return $this->belongsTo(JobType::class, 'type_id', 'id');
+    }
+    public function category()
+    {
+        return $this->belongsTo(JobCategories::class, 'category_id', 'id');
+    }
 }

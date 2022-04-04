@@ -12,7 +12,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('admin.dash') }}">Home</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('employeer.index') }}">Employer</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('employer.index') }}">Employer</a></li>
                             <li class="breadcrumb-item active">View Employer</li>
                         </ol>
                     </div><!-- /.col -->
@@ -26,7 +26,7 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">View Employer</h3>
-                    <a href="{{ route('employeer.index') }}" class="btn btn-secondary btn-sm" style="float: right;">Go
+                    <a href="{{ route('employer.index') }}" class="btn btn-secondary btn-sm" style="float: right;">Go
                         Back</a>
                 </div>
                 <div class="card-body p-0">

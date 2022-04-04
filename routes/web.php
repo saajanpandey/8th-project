@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminChangePasswordController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\city\CityController;
 use App\Http\Controllers\employeer\EmployeerController;
+use App\Http\Controllers\employeer\EmployerLoginController;
 use App\Http\Controllers\job\JobController;
 use App\Http\Controllers\jobCategories\JobCategoriesController;
 use App\Http\Controllers\jobType\JobTypeController;
@@ -46,15 +47,15 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
 
         Route::get('/cities', [CityController::class, 'index'])->name('city.index');
 
-        Route::get('employeers', [EmployeerController::class, 'index'])->name('employeer.index');
-        Route::get('employeers/create', [EmployeerController::class, 'create'])->name('employeer.create');
-        Route::get('employeers/edit/{id}', [EmployeerController::class, 'edit'])->name('employeer.edit');
-        Route::post('employeers/store', [EmployeerController::class, 'store'])->name('employeer.store');
-        Route::post('employeers/image/{id}', [EmployeerController::class, 'logoUpload'])->name('employeer.logo');
-        Route::post('employeers/pan/{id}', [EmployeerController::class, 'panUpload'])->name('employeer.pan');
-        Route::put('employeers/{id}', [EmployeerController::class, 'update'])->name('employeer.update');
-        Route::get('employeers/show/{id}', [EmployeerController::class, 'show'])->name('employeer.show');
-        Route::delete('employeers/{id}', [EmployeerController::class, 'destroy'])->name('employeer.destroy');
+        Route::get('employers', [EmployeerController::class, 'index'])->name('employer.index');
+        Route::get('employers/create', [EmployeerController::class, 'create'])->name('employer.create');
+        Route::get('employers/edit/{id}', [EmployeerController::class, 'edit'])->name('employer.edit');
+        Route::post('employers/store', [EmployeerController::class, 'store'])->name('employer.store');
+        Route::post('employers/image/{id}', [EmployeerController::class, 'logoUpload'])->name('employer.logo');
+        Route::post('employers/pan/{id}', [EmployeerController::class, 'panUpload'])->name('employer.pan');
+        Route::put('employers/{id}', [EmployeerController::class, 'update'])->name('employer.update');
+        Route::get('employers/show/{id}', [EmployeerController::class, 'show'])->name('employer.show');
+        Route::delete('employers/{id}', [EmployeerController::class, 'destroy'])->name('employer.destroy');
 
         Route::get('job-categories', [JobCategoriesController::class, 'index'])->name('categories.index');
 
@@ -64,5 +65,13 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::post('/jobs/store', [JobController::class, 'store'])->name('job.store');
         Route::put('/jobs/{id}', [JobController::class, 'update'])->name('job.update');
         Route::delete('/jobs/{id}', [JobController::class, 'destroy'])->name('job.destroy');
+    });
+});
+
+Route::group(['prefix' => 'employer'], function () {
+    Route::get('/login', [EmployerLoginController::class, 'showEmployerLoginForm'])->name('employer.view');
+    Route::post('/login', [EmployerLoginController::class, 'adminLogin'])->name('employer.login');
+
+    Route::group(['middleware' => 'auth:employer'], function () {
     });
 });
