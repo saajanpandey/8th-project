@@ -90,34 +90,34 @@
                             <a href="{{ route('employer.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-user-tie"></i>
                                 <p>
-                                    Employeers
+                                    Employers
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="{{ route('city.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-city"></i>
                                 <p>
                                     Cities
                                 </p>
                             </a>
-                        </li>
-                        <li class="nav-item">
+                        </li> --}}
+                        {{-- <li class="nav-item">
                             <a href="{{ route('jobtype.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-clipboard-list"></i>
                                 <p>
                                     Job Types
                                 </p>
                             </a>
-                        </li>
-                        <li class="nav-item">
+                        </li> --}}
+                        {{-- <li class="nav-item">
                             <a href="{{ route('categories.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-list"></i>
                                 <p>
                                     Job Categories
                                 </p>
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a href="{{ route('admin.change-password.view') }}" class="nav-link">
                                 <i class="nav-icon fas fa-key"></i>

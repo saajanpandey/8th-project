@@ -1,5 +1,5 @@
 @extends('admin.sidebar')
-@section('title', 'Edit Employeer')
+@section('title', 'Edit Employer')
 @section('content')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->

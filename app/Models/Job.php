@@ -13,7 +13,7 @@ class Job extends Model
 
     public function company()
     {
-        return $this->belongsTo(Employeer::class, 'company_id', 'id');
+        return $this->belongsTo(Employer::class, 'company_id', 'id');
     }
     public function city()
     {

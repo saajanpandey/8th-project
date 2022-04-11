@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
-class Employeer extends Authenticatable
+class Employer extends Authenticatable
 {
     use HasFactory;
 

@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\employeer;
+namespace App\Http\Controllers\employer;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\EmployeerRequest;
+use App\Http\Requests\EmployerRequest;
 use App\Models\City;
-use App\Models\Employeer;
+use App\Models\Employer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use File;
 
-class EmployeerController extends Controller
+class EmployerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,8 +19,8 @@ class EmployeerController extends Controller
      */
     public function index()
     {
-        $employeers = Employeer::paginate(10);
-        return view('employeer.index', compact('employeers'));
+        $employeers = Employer::paginate(10);
+        return view('employer.index', compact('employeers'));
     }
 
     /**
@@ -31,7 +31,7 @@ class EmployeerController extends Controller
     public function create()
     {
         $cities = City::get();
-        return view('employeer.create', compact('cities'));
+        return view('employer.create', compact('cities'));
     }
 
     /**
@@ -40,12 +40,12 @@ class EmployeerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(EmployeerRequest $request)
+    public function store(EmployerRequest $request)
     {
         // dd($request->all());
         $data = $request->except('_token');
         $data['password'] = Hash::make($request->password);
-        Employeer::create($data);
+        Employer::create($data);
         return redirect()->route('employer.index')->with('create', '');
     }
 
@@ -57,8 +57,8 @@ class EmployeerController extends Controller
      */
     public function show($id)
     {
-        $employeer = Employeer::find($id);
-        return view('employeer.view', compact('employeer'));
+        $employeer = Employer::find($id);
+        return view('employer.view', compact('employeer'));
     }
 
     /**
@@ -69,9 +69,9 @@ class EmployeerController extends Controller
      */
     public function edit($id)
     {
-        $employeer = Employeer::find($id);
+        $employeer = Employer::find($id);
         $cities = City::get();
-        return view('employeer.edit', compact('employeer', 'cities'));
+        return view('employer.edit', compact('employeer', 'cities'));
     }
 
     /**
@@ -83,7 +83,7 @@ class EmployeerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $employeer = Employeer::find($id);
+        $employeer = Employer::find($id);
         $data = $request->except('_token');
         $employeer->fill($data);
         $employeer->save();
@@ -98,7 +98,7 @@ class EmployeerController extends Controller
      */
     public function destroy($id)
     {
-        $employeer = Employeer::find($id);
+        $employeer = Employer::find($id);
         $logo = public_path() . '/uploads/logo/' . $employeer->image;
         $pan = public_path() . '/uploads/pan/' . $employeer->pan_image;
         if (file_exists($logo)) {
@@ -117,7 +117,7 @@ class EmployeerController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
         ]);
 
-        $employeer = Employeer::find($id);
+        $employeer = Employer::find($id);
 
         $image_path = public_path() . '/uploads/logo/' . $employeer->image;
         if (file_exists($image_path)) {
@@ -138,7 +138,7 @@ class EmployeerController extends Controller
             'pan_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
         ]);
 
-        $employeer = Employeer::find($id);
+        $employeer = Employer::find($id);
 
         $image_path = public_path() . '/uploads/pan/' . $employeer->pan_image;
         if (file_exists($image_path)) {

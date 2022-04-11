@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\employeer;
+namespace App\Http\Controllers\employer;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EmployerLoginRequest;
@@ -13,7 +13,7 @@ class EmployerLoginController extends Controller
     use AuthenticatesUsers;
     public function showEmployerLoginForm()
     {
-        return view('employeer.auth.login');
+        return view('employer.auth.login');
     }
 
     public function employerLogin(EmployerLoginRequest $request)

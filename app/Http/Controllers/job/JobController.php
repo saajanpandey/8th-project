@@ -5,7 +5,7 @@ namespace App\Http\Controllers\job;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\JobRequest;
 use App\Models\City;
-use App\Models\Employeer;
+use App\Models\Employer;
 use App\Models\Job;
 use App\Models\JobCategories;
 use App\Models\JobType;
@@ -31,7 +31,7 @@ class JobController extends Controller
      */
     public function create()
     {
-        $companies = Employeer::orderBy('company_name', 'ASC')->where('status', true)->get();
+        $companies = Employer::orderBy('company_name', 'ASC')->where('status', true)->get();
         $jobTypes = JobType::orderBy('name', 'ASC')->get();
         $categories = JobCategories::orderBy('name', 'ASC')->get();
         $cities = City::orderBy('name', 'ASC')->get();
@@ -71,7 +71,7 @@ class JobController extends Controller
     public function edit($id)
     {
         $job = Job::find($id);
-        $companies = Employeer::orderBy('company_name', 'ASC')->where('status', true)->get();
+        $companies = Employer::orderBy('company_name', 'ASC')->where('status', true)->get();
         $jobTypes = JobType::orderBy('name', 'ASC')->get();
         $categories = JobCategories::orderBy('name', 'ASC')->get();
         $cities = City::orderBy('name', 'ASC')->get();
