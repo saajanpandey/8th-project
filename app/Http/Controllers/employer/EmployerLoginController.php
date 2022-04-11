@@ -18,6 +18,7 @@ class EmployerLoginController extends Controller
 
     public function employerLogin(EmployerLoginRequest $request)
     {
+        dd("here");
         if (Auth::guard('employer')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
 
             return redirect()->intended('/employer/dashboard');

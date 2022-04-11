@@ -40,6 +40,7 @@
 
 
 <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+<script src="https://cdn.ckeditor.com/4.18.0/standard/ckeditor.js"></script>
 
 <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
 

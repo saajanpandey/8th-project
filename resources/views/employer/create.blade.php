@@ -49,7 +49,7 @@
 
                         <div class="form-group">
                             <label for="inputName">Email</label>
-                            <input type="text" id="inputName" class="form-control @error('email') is-invalid @enderror"
+                            <input type="email" id="inputName" class="form-control @error('email') is-invalid @enderror"
                                 name="email">
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
@@ -124,8 +124,7 @@
                         </div>
                         <div class="form-group">
                             <label for="inputName">Company Description</label>
-                            <textarea id="summernote" name="description" class="form-control @error('description') is-invalid @enderror">
-
+                            <textarea name="description" class="form-control @error('description') is-invalid @enderror ckeditor">
                               </textarea>
                             @error('description')
                                 <span class="invalid-feedback" role="alert">
@@ -146,9 +145,9 @@
                         <div class="form-group">
                             <label for="inputName">Confirm Password</label>
                             <input type="password" id="inputName"
-                                class="form-control @error('confirm_password') is-invalid @enderror"
+                                class="form-control @error('password_confirmation') is-invalid @enderror"
                                 name="password_confirmation">
-                            @error('confirm_password')
+                            @error('password_confirmation')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

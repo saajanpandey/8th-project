@@ -29,7 +29,6 @@ class EmployerRequest extends FormRequest
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'company_name' => ['required', 'string', 'max:255'],
-            'address' => ['required', 'max:255'],
             'contact' => ['required', 'numeric', new PhoneNumberValidation],
             'email' => ['required', 'email'],
             'password' => ['required', Password::min(6)
@@ -42,7 +41,7 @@ class EmployerRequest extends FormRequest
             'location' => ['required', 'string', 'max:255'],
             'city_id' => 'required',
             'status' => 'required',
-            'description' => ['required', 'string', 'max:255'],
+            'description' => ['string', 'max:255'],
         ];
     }
     public function attributes()

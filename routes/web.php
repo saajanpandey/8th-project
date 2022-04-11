@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminChangePasswordController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\employer\EmployerLoginController;
 use App\Http\Controllers\employer\EmployerController;
 use App\Http\Controllers\job\JobController;
 use Illuminate\Support\Facades\Route;
@@ -63,10 +64,10 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     });
 });
 
-// Route::group(['prefix' => 'employer'], function () {
-//     // Route::get('/login', [EmployerLoginController::class, 'showEmployerLoginForm'])->name('employer.view');
-//     // Route::post('/login', [EmployerLoginController::class, 'adminLogin'])->name('employer.login');
+Route::group(['prefix' => 'employer'], function () {
+    Route::get('/login', [EmployerLoginController::class, 'showEmployerLoginForm'])->name('employer.view');
+    Route::post('/login', [EmployerLoginController::class, 'employerLogin'])->name('employer.login');
 
-//     // Route::group(['middleware' => 'auth:employer'], function () {
-//     // });
-// });
+    Route::group(['middleware' => 'auth:employer'], function () {
+    });
+});

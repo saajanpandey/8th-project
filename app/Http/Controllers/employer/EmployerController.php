@@ -42,7 +42,6 @@ class EmployerController extends Controller
      */
     public function store(EmployerRequest $request)
     {
-        // dd($request->all());
         $data = $request->except('_token');
         $data['password'] = Hash::make($request->password);
         Employer::create($data);
