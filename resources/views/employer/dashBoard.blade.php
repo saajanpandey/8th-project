@@ -1,4 +1,4 @@
 @extends('layouts.employer')
-@section()
-
+@section('content')
+    this is dash
 @endsection

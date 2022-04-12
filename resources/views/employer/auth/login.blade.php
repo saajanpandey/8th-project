@@ -25,6 +25,16 @@
                         </div>
                         <form action="{{ route('employer.login') }}" method="POST">
                             @csrf
+                            @if (session()->has('unsuccess'))
+                                <div class="alert alert-danger">
+                                    <strong>
+                                        {!! session()->get('unsuccess') !!}
+                                    </strong>
+                                </div>
+                            @endif
+                            @php
+                                Request::session()->forget('unsuccess');
+                            @endphp
                             <div class="form-floating mb-3">
                                 <input type="email" class="form-control @error('email') is-invalid @enderror"
                                     id="floatingInput" placeholder="Email" name="email">
@@ -47,8 +57,9 @@
                             </div>
                             <div class="d-flex align-items-center justify-content-between mb-4">
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                    <input type="checkbox" class="form-check-input" id="exampleCheck1" name="remember_me"
+                                        {{ old('remember') ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="exampleCheck1">Remember Me</label>
                                 </div>
                                 {{-- <a href="">Forgot Password</a> --}}
                             </div>

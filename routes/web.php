@@ -69,5 +69,6 @@ Route::group(['prefix' => 'employer'], function () {
     Route::post('/login', [EmployerLoginController::class, 'employerLogin'])->name('employer.login');
 
     Route::group(['middleware' => 'auth:employer'], function () {
+        Route::view('/dashboard', 'employer.dashBoard')->name('employer.dash');
     });
 });

@@ -19,11 +19,11 @@ class LoginController extends Controller
 
     public function adminLogin(AdminLoginRequest $request)
     {
-        if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
-
+        $remember_me = $request->has('remember_me') ? true : false;
+        if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $remember_me)) {
             return redirect()->intended('/admin/dashboard');
         }
-        return back()->withInput($request->only('email', 'remember'))->with('unsuccess', 'The given data is invalid.');
+        return back()->withInput($request->only('email', 'remember_me'))->with('unsuccess', 'The given data is invalid.');
     }
     protected function guard()
     {
