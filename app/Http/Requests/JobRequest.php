@@ -27,7 +27,6 @@ class JobRequest extends FormRequest
             'title' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:1000'],
             'specification' => ['required', 'string', 'max:1000'],
-            'company_id' => ['required'],
             'type_id' => ['required'],
             'city_id' => ['required'],
             'category_id' => ['required'],
@@ -44,7 +43,6 @@ class JobRequest extends FormRequest
             'type_id' => 'job type',
             'city_id' => 'city',
             'category_id' => 'category',
-            'company_id' => 'company'
         ];
     }
 }

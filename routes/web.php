@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminChangePasswordController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\employer\EmployerChangePasswordController;
 use App\Http\Controllers\employer\EmployerLoginController;
 use App\Http\Controllers\employer\EmployerController;
 use App\Http\Controllers\job\JobController;
@@ -55,20 +56,32 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
 
         // Route::get('job-categories', [JobCategoriesController::class, 'index'])->name('categories.index');
 
-        Route::get('/jobs', [JobController::class, 'index'])->name('job.index');
-        Route::get('/jobs/create', [JobController::class, 'create'])->name('job.create');
-        Route::get('jobs/edit/{id}', [JobController::class, 'edit'])->name('job.edit');
-        Route::post('/jobs/store', [JobController::class, 'store'])->name('job.store');
-        Route::put('/jobs/{id}', [JobController::class, 'update'])->name('job.update');
-        Route::delete('/jobs/{id}', [JobController::class, 'destroy'])->name('job.destroy');
+        // Route::get('/jobs', [JobController::class, 'index'])->name('job.index');
+        // Route::get('/jobs/create', [JobController::class, 'create'])->name('job.create');
+        // Route::get('jobs/edit/{id}', [JobController::class, 'edit'])->name('job.edit');
+        // Route::post('/jobs/store', [JobController::class, 'store'])->name('job.store');
+        // Route::put('/jobs/{id}', [JobController::class, 'update'])->name('job.update');
+        // Route::delete('/jobs/{id}', [JobController::class, 'destroy'])->name('job.destroy');
     });
 });
 
 Route::group(['prefix' => 'employer'], function () {
     Route::get('/login', [EmployerLoginController::class, 'showEmployerLoginForm'])->name('employer.view');
     Route::post('/login', [EmployerLoginController::class, 'employerLogin'])->name('employer.login');
+    // Route::view('/dashboard', 'employer.dashBoard')->name('employer.dash');
 
     Route::group(['middleware' => 'auth:employer'], function () {
         Route::view('/dashboard', 'employer.dashBoard')->name('employer.dash');
+        Route::get('/logout', [EmployerLoginController::class, 'logout'])->name('employer.logout');
+
+        Route::get('/jobs', [JobController::class, 'index'])->name('job.index');
+        Route::get('/jobs/create', [JobController::class, 'create'])->name('job.create');
+        Route::get('jobs/edit/{id}', [JobController::class, 'edit'])->name('job.edit');
+        Route::post('/jobs/store', [JobController::class, 'store'])->name('job.store');
+        Route::put('/jobs/{id}', [JobController::class, 'update'])->name('job.update');
+        Route::delete('/jobs/{id}', [JobController::class, 'destroy'])->name('job.destroy');
+
+        Route::view('/change-password', 'employer.auth.changePassword')->name('employer.change-password.view');
+        Route::post('/change-password', [EmployerChangePasswordController::class, 'changePassword'])->name('employer.password');
     });
 });

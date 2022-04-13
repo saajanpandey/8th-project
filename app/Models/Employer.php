@@ -24,4 +24,9 @@ class Employer extends Authenticatable
     {
         return $this->belongsTo(City::class, 'city_id', 'id');
     }
+
+    public function getFullNameAttribute()
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
 }

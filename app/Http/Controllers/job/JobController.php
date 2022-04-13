@@ -13,6 +13,11 @@ use Illuminate\Http\Request;
 
 class JobController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:employer');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +25,7 @@ class JobController extends Controller
      */
     public function index()
     {
-        $jobs = Job::paginate(10);
+        $jobs = Job::where('company_id', auth()->user()->id)->paginate(1);
         return view('jobs.index', compact('jobs'));
     }
 
@@ -31,11 +36,10 @@ class JobController extends Controller
      */
     public function create()
     {
-        $companies = Employer::orderBy('company_name', 'ASC')->where('status', true)->get();
         $jobTypes = JobType::orderBy('name', 'ASC')->get();
         $categories = JobCategories::orderBy('name', 'ASC')->get();
         $cities = City::orderBy('name', 'ASC')->get();
-        return view('jobs.create', compact('companies', 'jobTypes', 'categories', 'cities'));
+        return view('jobs.create', compact('jobTypes', 'categories', 'cities'));
     }
 
     /**
@@ -47,6 +51,7 @@ class JobController extends Controller
     public function store(JobRequest $request)
     {
         $data = $request->except('_token');
+        $data['company_id'] = auth()->user()->id;
         Job::create($data);
         return redirect()->route('job.index')->with('create', '');
     }
@@ -71,11 +76,10 @@ class JobController extends Controller
     public function edit($id)
     {
         $job = Job::find($id);
-        $companies = Employer::orderBy('company_name', 'ASC')->where('status', true)->get();
         $jobTypes = JobType::orderBy('name', 'ASC')->get();
         $categories = JobCategories::orderBy('name', 'ASC')->get();
         $cities = City::orderBy('name', 'ASC')->get();
-        return view('jobs.edit', compact('job', 'companies', 'jobTypes', 'categories', 'cities'));
+        return view('jobs.edit', compact('job',  'jobTypes', 'categories', 'cities'));
     }
 
     /**
@@ -89,6 +93,7 @@ class JobController extends Controller
     {
         $job = Job::find($id);
         $data = $request->except('_token');
+        $data['company_id'] = auth()->user()->id;
         $job->fill($data)->save();
         return redirect()->route('job.index')->with('update', '');
     }
