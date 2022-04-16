@@ -26,4 +26,14 @@ class WelcomeController extends Controller
         $employers = Employer::count();
         return $employers;
     }
+    public function jobList()
+    {
+        $jobsList = Job::where('status', 1)->paginate(4);
+        return $jobsList;
+    }
+    public function singleJob($id)
+    {
+        $job = Job::find($id);
+        return view('frontend.singleJob', compact('job'));
+    }
 }

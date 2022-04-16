@@ -17,7 +17,9 @@ class CreateJobsTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('description')->nullable();
-            $table->text('specification')->nullable();
+            $table->text('responsibilities')->nullable();
+            $table->text('education_experience')->nullable();
+            $table->text('benefits')->nullable();
             $table->unsignedBigInteger('company_id');
             $table->unsignedBigInteger('type_id');
             $table->unsignedBigInteger('city_id');

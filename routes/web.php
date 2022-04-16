@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\Admin\AdminChangePasswordController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\contactUs\ContactUsController;
 use App\Http\Controllers\employer\EmployerChangePasswordController;
 use App\Http\Controllers\employer\EmployerLoginController;
 use App\Http\Controllers\employer\EmployerController;
 use App\Http\Controllers\job\JobController;
+use App\Http\Controllers\welcome\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -92,3 +94,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::view('/contact-us', 'frontend.contact')->name('frontend.contactUs');
+Route::view('/about-us', 'frontend.about')->name('frontend.about');
+Route::post('/contact-us/store', [ContactUsController::class, 'store'])->name('contact.post');
+Route::get('/view-job/{id}', [WelcomeController::class, 'singleJob'])->name('single.job.view');

@@ -25,8 +25,10 @@ class JobRequest extends FormRequest
     {
         return [
             'title' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string', 'max:1000'],
-            'specification' => ['required', 'string', 'max:1000'],
+            'description' => ['required', 'string', 'max:5000'],
+            'responsibilities' => ['required', 'string', 'max:5000'],
+            'education_experience' => ['required', 'string', 'max:5000'],
+            'benefits' => ['required', 'string', 'max:5000'],
             'type_id' => ['required'],
             'city_id' => ['required'],
             'category_id' => ['required'],

@@ -109,12 +109,35 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label for="inputName">Job Specification</label>
-                    <textarea id="specification" name="specification"
-                        class="form-control @error('specification') is-invalid @enderror ckeditor">
-                        {{ $job->description }}
-                          </textarea>
-                    @error('specification')
+                    <label for="inputName">Job Responsibilities</label>
+                    <textarea id="responsibilities" name="responsibilities"
+                        class="form-control @error('responsibilities') is-invalid @enderror ckeditor">
+                            {{ $job->responsibilities }}
+                              </textarea>
+                    @error('responsibilities')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="inputName">Education and experience</label>
+                    <textarea id="education_experience" name="education_experience"
+                        class="form-control @error('education_experience') is-invalid @enderror ckeditor">
+                        {{ $job->education_experience }}
+                              </textarea>
+                    @error('education_experience')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="inputName">Benefits</label>
+                    <textarea id="benefits" name="benefits" class="form-control @error('benefits') is-invalid @enderror ckeditor">
+                        {{ $job->benefits }}
+                              </textarea>
+                    @error('benefits')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
