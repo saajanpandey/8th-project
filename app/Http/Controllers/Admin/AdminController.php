@@ -3,10 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Employer;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -81,5 +87,16 @@ class AdminController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function companies()
+    {
+        $companies = Employer::count();
+        return $companies;
+    }
+    public function users()
+    {
+        $users = User::count();
+        return $users;
     }
 }

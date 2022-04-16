@@ -36,7 +36,7 @@
                         </span>
                     @enderror
                 </div>
-                <button type="submit" class="btn btn-primary">Create</button>
+                <button type="submit" class="btn btn-primary">Change</button>
                 <a href="{{ route('job.index') }}" class="btn btn-secondary" style="float:right">Back</a>
             </form>
 

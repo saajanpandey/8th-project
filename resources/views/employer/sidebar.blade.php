@@ -122,7 +122,16 @@
                             <span class="d-none d-lg-inline-flex">{{ Auth::user()->full_name }}</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                            <a href="#" class="dropdown-item">My Profile</a>
+                            <a href="{{ route('employer.edit', auth()->user()->id) }}" class="dropdown-item">My
+                                Profile</a>
+                            <a class="dropdown-item" data-action="{{ route('employer.logo', auth()->user()->id) }}"
+                                data-bs-toggle="modal" data-bs-target="#imageUpload" href="#imageUpload">
+                                Upload Logo
+                            </a>
+                            <a class="dropdown-item" data-action="{{ route('employer.pan', auth()->user()->id) }}"
+                                data-bs-toggle="modal" data-bs-target="#panUploads">
+                                Upload PAN
+                            </a>
                             <a href="{{ route('employer.change-password.view') }}" class="dropdown-item">Change
                                 Password</a>
                             <a href="{{ route('employer.logout') }}" class="dropdown-item">Log Out</a>
@@ -132,10 +141,11 @@
             </nav>
             <!-- Navbar End -->
 
-
             @yield('contents')
 
-            <div class="container-fluid pt-4 px-4">
+
+            <!-- Footer Start -->
+            {{-- <div class="container-fluid pt-4 px-4" style="position:static">
                 <div class="bg-light rounded-top p-4">
                     <div class="row">
                         <div class="col-12 col-sm-6 text-center text-sm-start">
@@ -145,7 +155,68 @@
                 </div>
             </div>
             <!-- Footer End -->
-        </div>
+        </div> --}}
         <!-- Content End -->
     </div>
+    <div class="modal fade" id="imageUpload" data-backdrop="static" tabindex="-1" role="dialog"
+        aria-labelledby="imageUpload" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Upload Company Logo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="" enctype="multipart/form-data">
+                        @csrf
+                        <input type="file" name="image">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="modal-confirm_upload">Upload Logo</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="panUploads" data-backdrop="static" tabindex="-1" role="dialog"
+        aria-labelledby="panUploads" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Upload PAN</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="" enctype="multipart/form-data">
+                        @csrf
+                        <input type="file" name="pan_image">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="modal-confirm_upload">Upload PAN</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+@section('scripts')
+    <script>
+        var imageModal = document.getElementById('imageUpload');
+        imageModal.addEventListener('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget);
+            var action = button.data('action');
+            var modal = $(this);
+            modal.find('form').attr('action', action);
+        });
+        var panModal = document.getElementById('panUploads');
+        panModal.addEventListener('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget);
+            var action = button.data('action');
+            var modal = $(this);
+            modal.find('form').attr('action', action);
+        })
+    </script>
 @endsection

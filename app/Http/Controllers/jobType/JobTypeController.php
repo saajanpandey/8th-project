@@ -20,6 +20,12 @@ class JobTypeController extends Controller
         return view('jobType.index', compact('types'));
     }
 
+    public function allData()
+    {
+        $types = JobType::orderBy('name')->get();
+        return $types;
+    }
+
     /**
      * Show the form for creating a new resource.
      *

@@ -80,13 +80,14 @@ class EmployerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EmployerRequest $request, $id)
     {
         $employeer = Employer::find($id);
         $data = $request->except('_token');
+        $data['status'] = 0;
         $employeer->fill($data);
         $employeer->save();
-        return redirect()->route('employer.index')->with('update', '');
+        return redirect()->route('employer.dash')->with('update', '');
     }
 
     /**
@@ -129,7 +130,7 @@ class EmployerController extends Controller
         $image->move($destinationPath, $name);
         $employeer->image = $name;
         $employeer->save();
-        return redirect()->route('employer.index')->with('image', '');
+        return redirect()->route('employer.dash')->with('image', '');
     }
     public function panUpload(Request $request, $id)
     {
@@ -150,6 +151,20 @@ class EmployerController extends Controller
         $image->move($destinationPath, $name);
         $employeer->pan_image = $name;
         $employeer->save();
-        return redirect()->route('employer.index')->with('image', '');
+        return redirect()->route('employer.dash')->with('image', '');
+    }
+    public function adminEdit($id)
+    {
+        $employeer = Employer::find($id);
+        $cities = City::get();
+        return view('admin.employerEdit', compact('employeer', 'cities'));
+    }
+    public function adminUpdate(EmployerRequest $request, $id)
+    {
+        $employeer = Employer::find($id);
+        $data = $request->except('_token');
+        $employeer->fill($data);
+        $employeer->save();
+        return redirect()->route('employer.index')->with('update', '');
     }
 }

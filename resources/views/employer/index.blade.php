@@ -83,7 +83,7 @@
                                             View
                                         </a>
                                         <a class="btn btn-info btn-sm"
-                                            href="{{ route('employer.edit', $employeer->id) }}">
+                                            href="{{ route('employer.admin.edit', $employeer->id) }}">
                                             <i class="fas fa-pencil-alt">
                                             </i>
                                             Edit
@@ -95,7 +95,7 @@
                                             Delete
                                         </button>
 
-                                        <button type="button" class="btn btn-secondary btn-sm"
+                                        {{-- <button type="button" class="btn btn-secondary btn-sm"
                                             data-action="{{ route('employer.logo', $employeer->id) }}" data-toggle="modal"
                                             data-target="#imageUpload">
                                             <i class="fas fa-upload"></i>
@@ -107,7 +107,7 @@
                                             data-target="#panUploads">
                                             <i class="fas fa-upload"></i>
                                             Upload PAN
-                                        </button>
+                                        </button> --}}
                                     </td>
                                 </tr>
                             @endforeach

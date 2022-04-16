@@ -1,4 +1,5 @@
 @extends('admin.sidebar')
+@inject('admin','App\Http\Controllers\Admin\AdminController')
 @section('content')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -28,12 +29,12 @@
                         <!-- small box -->
                         <div class="small-box bg-info">
                             <div class="inner">
-                                <h3>150</h3>
+                                <h3>{{ $admin->companies() }}</h3>
 
-                                <p>New Orders</p>
+                                <p>Companies</p>
                             </div>
                             <div class="icon">
-                                <i class="ion ion-bag"></i>
+                                <i class="fas fa-building"></i>
                             </div>
                         </div>
                     </div>
@@ -56,9 +57,9 @@
                         <!-- small box -->
                         <div class="small-box bg-warning">
                             <div class="inner">
-                                <h3>44</h3>
+                                <h3>{{ $admin->users() }}</h3>
 
-                                <p>User Registrations</p>
+                                <p>JobSeekers</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-person-add"></i>

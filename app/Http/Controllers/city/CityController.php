@@ -20,6 +20,12 @@ class CityController extends Controller
         return view('city.index', compact('cities'));
     }
 
+    public function allData()
+    {
+        $cities = City::orderBy('name')->get();
+        return $cities;
+    }
+
     /**
      * Show the form for creating a new resource.
      *

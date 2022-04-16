@@ -46,12 +46,10 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
 
         Route::get('employers', [EmployerController::class, 'index'])->name('employer.index');
         Route::get('employers/create', [EmployerController::class, 'create'])->name('employer.create');
-        Route::get('employers/edit/{id}', [EmployerController::class, 'edit'])->name('employer.edit');
+        Route::get('employers/edit/{id}', [EmployerController::class, 'adminEdit'])->name('employer.admin.edit');
         Route::post('employers/store', [EmployerController::class, 'store'])->name('employer.store');
-        Route::post('employers/image/{id}', [EmployerController::class, 'logoUpload'])->name('employer.logo');
-        Route::post('employers/pan/{id}', [EmployerController::class, 'panUpload'])->name('employer.pan');
-        Route::put('employers/{id}', [EmployerController::class, 'update'])->name('employer.update');
         Route::get('employers/show/{id}', [EmployerController::class, 'show'])->name('employer.show');
+        Route::put('employers/{id}', [EmployerController::class, 'adminUpdate'])->name('employer.admin.update');
         Route::delete('employers/{id}', [EmployerController::class, 'destroy'])->name('employer.destroy');
 
         // Route::get('job-categories', [JobCategoriesController::class, 'index'])->name('categories.index');
@@ -83,5 +81,14 @@ Route::group(['prefix' => 'employer'], function () {
 
         Route::view('/change-password', 'employer.auth.changePassword')->name('employer.change-password.view');
         Route::post('/change-password', [EmployerChangePasswordController::class, 'changePassword'])->name('employer.password');
+
+        Route::get('/edit/{id}', [EmployerController::class, 'edit'])->name('employer.edit');
+        Route::post('/image/{id}', [EmployerController::class, 'logoUpload'])->name('employer.logo');
+        Route::post('/pan/{id}', [EmployerController::class, 'panUpload'])->name('employer.pan');
+        Route::put('/{id}', [EmployerController::class, 'update'])->name('employer.update');
     });
 });
+Route::get('/', function () {
+    return view('welcome');
+});
+Route::view('/contact-us', 'frontend.contact')->name('frontend.contactUs');
