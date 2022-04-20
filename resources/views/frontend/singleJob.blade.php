@@ -24,7 +24,8 @@
                 <div class="col-lg-8 mb-4 mb-lg-0">
                     <div class="d-flex align-items-center">
                         <div class="border p-2 d-inline-block mr-3 rounded">
-                            <img src="{{ public_path() . '/uploads/logo/' . $job->company->image }}" alt="Image">
+                            <img src="{{ asset('/uploads/logo/' . $job->company->image) }}" alt="Image"
+                                style="width: 150px;height:150px">
                         </div>
                         <div>
                             <h2>{{ $job->title }}</h2>
@@ -83,6 +84,9 @@
                     <div class="bg-light p-3 border rounded mb-4">
                         <h3 class="text-primary  mt-3 h5 pl-3 mb-3 ">Job Summary</h3>
                         <ul class="list-unstyled pl-3 mb-0">
+                            <li class="mb-2"><strong class="text-black">Job Category</strong>
+                                {{ $job->category->name }}
+                            </li>
                             <li class="mb-2"><strong class="text-black">Published on:</strong>
                                 {{ $job->created_at->format('F d, Y') }}
                             </li>

@@ -11,4 +11,9 @@ class ContactUs extends Model
 
     protected $fillable = ['first_name', 'last_name', 'email', 'subject', 'message'];
     // protected $table = ['contact_us'];
+
+    public function getFullNameAttribute()
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
 }

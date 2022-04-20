@@ -4,6 +4,7 @@ namespace App\Http\Controllers\employer;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EmployerRequest;
+use App\Http\Requests\FrontendEmployerRequest;
 use App\Models\City;
 use App\Models\Employer;
 use Illuminate\Http\Request;
@@ -166,5 +167,37 @@ class EmployerController extends Controller
         $employeer->fill($data);
         $employeer->save();
         return redirect()->route('employer.index')->with('update', '');
+    }
+    public function signup()
+    {
+        $cities = City::get();
+        return view('frontend.employersignup', compact('cities'));
+    }
+
+    public function register(FrontendEmployerRequest $request)
+    {
+        $data = $request->except('_token');
+        $data['password'] = Hash::make($request->password);
+
+        $logo_image = $request->file('image');
+        $pan_image = $request->file('pan_image');
+
+        if ($logo_image) {
+            $image = $request->file('image');
+            $name = time() . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path('/uploads/logo/');
+            $image->move($destinationPath, $name);
+            $data['image'] = $name;
+        }
+        if ($pan_image) {
+            $image = $request->file('pan_image');
+            $name = time() . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path('/uploads/pan/');
+            $image->move($destinationPath, $name);
+            $data['pan_image'] = $name;
+        }
+        $data['status'] = 0;
+        Employer::create($data);
+        return redirect()->to('/')->with('store', '');
     }
 }

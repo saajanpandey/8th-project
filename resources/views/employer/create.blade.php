@@ -29,7 +29,7 @@
                         <div class="form-group">
                             <label for="inputName">First Name</label>
                             <input type="text" id="inputName" class="form-control @error('first_name') is-invalid @enderror"
-                                name="first_name">
+                                name="first_name" value="{{ old('first_name') }}">
                             @error('first_name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -39,7 +39,7 @@
                         <div class="form-group">
                             <label for="inputName">Last Name</label>
                             <input type="text" id="inputName" class="form-control @error('last_name') is-invalid @enderror"
-                                name="last_name">
+                                name="last_name" value="{{ old('last_name') }}">
                             @error('last_name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -50,7 +50,7 @@
                         <div class="form-group">
                             <label for="inputName">Email</label>
                             <input type="email" id="inputName" class="form-control @error('email') is-invalid @enderror"
-                                name="email">
+                                name="email" value="{{ old('email') }}">
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -60,7 +60,8 @@
                         <div class="form-group">
                             <label for="inputName">Company Name</label>
                             <input type="text" id="inputName"
-                                class="form-control @error('company_name') is-invalid @enderror" name="company_name">
+                                class="form-control @error('company_name') is-invalid @enderror" name="company_name"
+                                value={{ old('company_name') }}>
                             @error('company_name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -70,7 +71,7 @@
                         <div class="form-group">
                             <label for="inputName">Location</label>
                             <input type="text" id="inputName" class="form-control @error('location') is-invalid @enderror"
-                                name="location">
+                                name="location" value="{{ old('location') }}">
                             @error('location')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -79,8 +80,8 @@
                         </div>
                         <div class="form-group">
                             <label for="inputName">City</label>
-                            <select class="custom-select form-control @error('city_id') is-invalid @enderror"
-                                name="city_id">
+                            <select class="custom-select form-control @error('city_id') is-invalid @enderror" name="city_id"
+                                value="{{ old('city_id') }}">
                                 <option selected disabled>Select City</option>
                                 @foreach ($cities as $city)
                                     <option value="{{ $city->id }}">{{ $city->name }}</option>
@@ -95,7 +96,7 @@
                         <div class="form-group">
                             <label for="inputName">Phone Number</label>
                             <input type="text" id="inputName" class="form-control @error('contact') is-invalid @enderror"
-                                name="contact">
+                                name="contact" value="{{ old('contact') }}">
                             @error('contact')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -105,7 +106,7 @@
                         <div class="form-group">
                             <label for="inputName">Website</label>
                             <input type="text" id="inputName" class="form-control @error('website') is-invalid @enderror"
-                                name="website">
+                                name="website" value="{{ old('website') }}">
                             @error('website')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -115,7 +116,7 @@
                         <div class="form-group">
                             <label for="inputName">PAN Number</label>
                             <input type="text" id="inputName" class="form-control @error('pan_number') is-invalid @enderror"
-                                name="pan_number">
+                                name="pan_number" value="{{ old('pan_number') }}">
                             @error('pan_number')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

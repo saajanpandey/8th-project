@@ -17,7 +17,8 @@
     <link rel="stylesheet" href="{{ asset('frontend/fonts/line-icons/style.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/animate.min.css') }}">
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+    <link rel="icon" href="{{ url('frontend/images/admin.png') }}">
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
 </head>
@@ -48,7 +49,7 @@
         <header class="site-navbar mt-3">
             <div class="container-fluid">
                 <div class="row align-items-center">
-                    <div class="site-logo col-6"><a href="{{ url('/') }}">JobBoard</a></div>
+                    <div class="site-logo col-6"><a href="{{ url('/') }}">JobFinder</a></div>
 
                     <nav class="mx-auto site-navigation">
                         <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
@@ -128,8 +129,25 @@
     <script src="{{ asset('frontend/js/bootstrap-select.min.js') }}"></script>
 
     <script src="{{ asset('frontend/js/custom.js') }}"></script>
-
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    @if (Session::has('create'))
+        <script>
+            $(document).ready(function() {
+                toastr.options.progressBar = true;
+                toastr.success('Message Sent Successfully');
+            });
+        </script>
+    @elseif(Session::has('store'))
+        <script>
+            $(document).ready(function() {
+                toastr.options.progressBar = true;
+                toastr.success(
+                    'We need to verify whether the pan number is valid or not. We will notify you about account activation.'
+                );
+            });
+        </script>
+    @endif
+    @yield('scripts')
 </body>
 
 </html>

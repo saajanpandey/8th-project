@@ -16,6 +16,8 @@ class ContactUsController extends Controller
      */
     public function index()
     {
+        $contacts = ContactUs::paginate('8');
+        return view('admin.queries', compact('contacts'));
     }
 
     /**
@@ -38,7 +40,7 @@ class ContactUsController extends Controller
     {
         $data = $request->except('_token');
         ContactUs::create($data);
-        return redirect()->back()->with('success', 'Feedback send successfully');
+        return redirect()->back()->with('create', '');
     }
 
     /**
@@ -83,6 +85,8 @@ class ContactUsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = ContactUs::find($id);
+        $data->delete();
+        return redirect()->back()->with('delete', '');
     }
 }

@@ -62,6 +62,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         // Route::post('/jobs/store', [JobController::class, 'store'])->name('job.store');
         // Route::put('/jobs/{id}', [JobController::class, 'update'])->name('job.update');
         // Route::delete('/jobs/{id}', [JobController::class, 'destroy'])->name('job.destroy');
+
+        Route::get('/feedback-queries', [ContactUsController::class, 'index'])->name('contact.index');
+        Route::get('/feedback-queries/{id}', [ContactUsController::class, 'destroy'])->name('contact.destroy');
     });
 });
 
@@ -70,7 +73,7 @@ Route::group(['prefix' => 'employer'], function () {
     Route::post('/login', [EmployerLoginController::class, 'employerLogin'])->name('employer.login');
     // Route::view('/dashboard', 'employer.dashBoard')->name('employer.dash');
 
-    Route::group(['middleware' => 'auth:employer'], function () {
+    Route::group(['middleware' => 'employeer', 'middleware' => 'auth:employer'], function () {
         Route::view('/dashboard', 'employer.dashBoard')->name('employer.dash');
         Route::get('/logout', [EmployerLoginController::class, 'logout'])->name('employer.logout');
 
@@ -97,3 +100,7 @@ Route::view('/contact-us', 'frontend.contact')->name('frontend.contactUs');
 Route::view('/about-us', 'frontend.about')->name('frontend.about');
 Route::post('/contact-us/store', [ContactUsController::class, 'store'])->name('contact.post');
 Route::get('/view-job/{id}', [WelcomeController::class, 'singleJob'])->name('single.job.view');
+Route::get('/employer/signup', [EmployerController::class, 'signup'])->name('employer.signup');
+Route::post('/employer/register', [EmployerController::class, 'register'])->name('employer.register');
+Route::get('/search', [WelcomeController::class, 'searchJob'])->name('job.search');
+Route::get('/advance-search', [WelcomeController::class, 'advanceSearch'])->name('job.advance.search');

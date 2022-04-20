@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 @section('title', 'About Us')
 @section('contents')
-    <section class="section-hero overlay inner-page bg-image" style="background-image: url('/frontend/images/hero_1.jpg');;"
+    <section class="section-hero overlay inner-page bg-image" style="background-image: url('/frontend/images/hero_1.jpg');"
         id="home-section">
         <div class="container">
             <div class="row">
@@ -16,14 +16,11 @@
         </div>
     </section>
 
-    <section class="py-5 bg-image overlay-primary fixed overlay" id="next-section"
-        style="background-image: url('images/hero_1.jpg');">
+    <section class="py-5 bg-image overlay-primary fixed overlay" id="next-section" style="">
         <div class="container">
             <div class="row mb-5 justify-content-center">
                 <div class="col-md-7 text-center">
-                    <h2 class="section-title mb-2 text-white">JobBoard Site Stats</h2>
-                    <p class="lead text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita unde
-                        officiis recusandae sequi excepturi corrupti.</p>
+                    <h2 class="section-title mb-2 text-white">JobFinder Site Stats</h2>
                 </div>
             </div>
             <div class="row pb-0 block__19738 section-counter">
@@ -72,7 +69,7 @@
                     </a>
                 </div>
                 <div class="col-lg-5 ml-auto">
-                    {{-- <h2 class="section-title mb-3">JobBoard For Freelancers, Web Developers</h2> --}}
+                    <h2 class="section-title mb-3">WHO WE ARE</h2>
                     <p class="lead">
                         Job Finder is the website for all the professionals, amateurs and interns to seek and post any sort
                         of jobs based on different categories. Here jobs from programming to photography, monthly to hour

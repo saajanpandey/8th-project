@@ -77,7 +77,7 @@
                             <div class="col-md-12">
                                 <label class="text-black" for="message">Message</label>
                                 <textarea name="message" id="message" cols="30" rows="7" class="form-control @error('message') is-invalid @enderror"
-                                    placeholder="Write your notes or questions here..." name="message"></textarea>
+                                    placeholder="Write your feedbacks or queries here..." name="message"></textarea>
                                 @error('message')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

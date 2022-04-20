@@ -145,14 +145,14 @@
                     <div class="mb-5 text-center">
                         <h1 class="text-white font-weight-bold">The Easiest Way To Get Your Dream Job</h1>
                     </div>
-                    <form method="post" class="search-jobs-form">
+                    <form method="GET" class="search-jobs-form" action="{{ route('job.search') }}">
                         <div class="row mb-5">
                             <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                                <input type="text" class="form-control form-control-lg" placeholder="Job title, Company...">
+                                <input type="text" class="form-control form-control-lg" placeholder="Job title" name="title">
                             </div>
                             <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
                                 <select class="selectpicker" data-style="btn-white btn-lg" data-width="100%"
-                                    data-live-search="true" title="Select City">
+                                    data-live-search="true" title="Select City" name="city_id">
                                     @foreach ($cities->allData() as $city)
                                         <option value="{{ $city->id }}">{{ $city->name }}</option>
                                     @endforeach
@@ -160,7 +160,7 @@
                             </div>
                             <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
                                 <select class="selectpicker" data-style="btn-white btn-lg" data-width="100%"
-                                    data-live-search="true" title="Select Job Type">
+                                    data-live-search="true" title="Select Job Type" name="type_id">
                                     @foreach ($types->allData() as $type)
                                         <option value="{{ $type->id }}">{{ $type->name }}</option>
                                     @endforeach
@@ -169,6 +169,10 @@
                             <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
                                 <button type="submit" class="btn btn-primary btn-lg btn-block text-white btn-search"><span
                                         class="icon-search icon mr-2"></span>Search Job</button>
+                                <a href="" data-action="{{ route('job.advance.search') }}" data-toggle="modal"
+                                    data-target="#advanceSearch" style="float: right; color:white">
+                                    Advance Search
+                                </a>
                             </div>
                         </div>
                     </form>
@@ -182,8 +186,7 @@
 
     </section>
 
-    <section class="py-5 bg-image overlay-primary fixed overlay" id="next"
-        style="background-image: url('images/hero_1.jpg');">
+    <section class="py-5 bg-image overlay-primary fixed overlay" id="next" style="">
         <div class="container">
             <div class="row mb-5 justify-content-center">
                 <div class="col-md-7 text-center">
@@ -243,8 +246,8 @@
                     <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
                         <a href="{{ route('single.job.view', $list->id) }}"></a>
                         <div class="job-listing-logo">
-                            <img src="{{ public_path() . '/uploads/logo/' . $list->company->image }}" alt="Company Logo"
-                                class="img-fluid">
+                            <img src="{{ asset('/uploads/logo/' . $list->company->image) }}" alt="Company Logo"
+                                class="img-fluid" style="width: 150px;height:150px">
                         </div>
 
                         <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
@@ -274,7 +277,7 @@
         </div>
     </section>
 
-    <section class="py-5 bg-image overlay-primary fixed overlay" style="background-image: url('images/hero_1.jpg');">
+    <section class="py-5 bg-image overlay-primary fixed overlay" style="">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-8">
@@ -302,7 +305,7 @@
                     </div>
 
                 </div>
-                <div class="col-6 col-lg-3 col-md-6 text-center">
+                {{-- <div class="col-6 col-lg-3 col-md-6 text-center">
                     <img src="images/logo_mailchimp.svg" alt="Image" class="img-fluid logo-1">
                 </div>
                 <div class="col-6 col-lg-3 col-md-6 text-center">
@@ -326,8 +329,109 @@
                 </div>
                 <div class="col-6 col-lg-3 col-md-6 text-center">
                     <img src="images/logo_airbnb.svg" alt="Image" class="img-fluid logo-8">
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>
+    <div class="modal fade" id="advanceSearch" data-backdrop="static" tabindex="-1" role="dialog"
+        aria-labelledby="panUploads" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Advance Search</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="GET" action="">
+                    <div class="modal-body">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">Job Title</label>
+                                <input type="text" class="form-control" id="inputEmail4" placeholder="keyword"
+                                    name="title">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputPassword4">Experience</label>
+                                <input type="number" class="form-control @error('experience') is-invalid @enderror"
+                                    id="inputPassword4" placeholder="Experience" name="experience">
+                                @error('experience')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputAddress">Job Type</label>
+                                <select class="form-control mb-3 @error('type_id') is-invalid @enderror" name="type_id">
+                                    <option selected disabled>Select Job Type</option>
+                                    @foreach ($welcome->jobTypes() as $jobType)
+                                        <option value="{{ $jobType->id }}">{{ $jobType->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('type_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputCity">City</label>
+                                <select class="form-control mb-3 @error('city_id') is-invalid @enderror" name="city_id">
+                                    <option selected disabled>Select City</option>
+                                    @foreach ($cities->allData() as $city)
+                                        <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('city_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label for="inputCity">Categories</label>
+                            <select class="form-control mb-3  @error('category_id') is-invalid @enderror"
+                                name="category_id">
+                                <option selected disabled>Select Category</option>
+                                @foreach ($welcome->categories() as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('category_id')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn bg-white" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" id="modal-confirm_upload"><span
+                                class="icon-search icon mr-2"></span>Search Job</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+@endsection
+@section('scripts')
+    <script>
+        $('#advanceSearch').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget);
+            var action = button.data('action');
+            var modal = $(this);
+            modal.find('form').attr('action', action);
+        });
+    </script>
+    @if (count($errors) > 0)
+        <script>
+            $(document).ready(function() {
+                $('#advanceSearch').modal('show');
+            });
+        </script>
+    @endif
 @endsection
