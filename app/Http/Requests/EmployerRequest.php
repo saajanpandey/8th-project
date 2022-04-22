@@ -43,7 +43,7 @@ class EmployerRequest extends FormRequest
                 'location' => ['required', 'string', 'max:255'],
                 'city_id' => 'required',
                 'status' => 'required',
-                'description' => ['string', 'max:255'],
+                'description' => ['nullable', 'string', 'max:255'],
             ];
         }
         if ($request->method == 'PUT') {

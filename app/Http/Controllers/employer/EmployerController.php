@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\employer;
 
+use App\Events\AccountCreated;
+use App\Events\EmployerAccountCreated;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EmployerRequest;
 use App\Http\Requests\FrontendEmployerRequest;
@@ -20,7 +22,7 @@ class EmployerController extends Controller
      */
     public function index()
     {
-        $employeers = Employer::paginate(10);
+        $employeers = Employer::orderBy('id', 'DESC')->paginate(10);
         return view('employer.index', compact('employeers'));
     }
 
@@ -46,6 +48,7 @@ class EmployerController extends Controller
         $data = $request->except('_token');
         $data['password'] = Hash::make($request->password);
         Employer::create($data);
+        event(new EmployerAccountCreated($data));
         return redirect()->route('employer.index')->with('create', '');
     }
 
@@ -198,6 +201,7 @@ class EmployerController extends Controller
         }
         $data['status'] = 0;
         Employer::create($data);
+        event(new EmployerAccountCreated($data));
         return redirect()->to('/')->with('store', '');
     }
 }
