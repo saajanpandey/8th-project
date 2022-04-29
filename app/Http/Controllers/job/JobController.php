@@ -9,6 +9,7 @@ use App\Models\Employer;
 use App\Models\Job;
 use App\Models\JobCategories;
 use App\Models\JobType;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class JobController extends Controller
@@ -26,6 +27,17 @@ class JobController extends Controller
     public function index()
     {
         $jobs = Job::where('company_id', auth()->user()->id)->paginate(10);
+        foreach ($jobs as $job) {
+            if (Carbon::now()->toDateString() > $job->expiry_date) {
+                $job->update([
+                    'status' => 0,
+                ]);
+            } else {
+                $job->update([
+                    'status' => 1,
+                ]);
+            }
+        }
         return view('jobs.index', compact('jobs'));
     }
 
@@ -94,6 +106,11 @@ class JobController extends Controller
         $job = Job::find($id);
         $data = $request->except('_token');
         $data['company_id'] = auth()->user()->id;
+        if (Carbon::now()->toDateString() > $job->expiry_date) {
+            $data['status'] = 0;
+        } else {
+            $data['status'] = 1; 
+        }
         $job->fill($data)->save();
         return redirect()->route('job.index')->with('update', '');
     }

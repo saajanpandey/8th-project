@@ -43,19 +43,40 @@ class WelcomeController extends Controller
     {
         $data = $request->all();
         $title = $data['title'];
-        $searchData = Job::where('title', 'ILIKE', '%' . $data['title'] . '%')->orWhere('city_id', $data['city_id'])->orWhere('type_id', $data['type_id'])->paginate(8);
+        $query = Job::query();
+        if (isset($data['title']) && $data['title'] != null) {
+            $query->where('title', 'ILIKE', '%' . $data['title'] . '%');
+        }
+        if (isset($data['city_id']) && $data['city_id'] != null) {
+            $query->orWhere('city_id', $data['city_id']);
+        }
+        if (isset($data['type_id']) && $data['type_id'] != null) {
+            $query->orWhere('type_id', $data['type_id']);
+        }
+        $searchData = $query->orderBy('title', 'ASC')->paginate(8);
         return view('frontend.search', compact('searchData', 'title'));
     }
-    public function advanceSearch(SearchRequest $request)
+    public function advanceSearch(Request $request)
     {
         $data = $request->all();
         $title = $data['title'];
-        $searchData = Job::where('title', 'ILIKE', '%' . $data['title'] . '%')
-            ->orWhere('experience', $data['experience'])
-            ->orWhere('category_id', $data['category_id'])
-            ->orWhere('city_id', $data['city_id'])
-            ->orWhere('type_id', $data['type_id'])
-            ->paginate(8);
+        $query = Job::query();
+        if (isset($data['title']) && $data['title'] != null) {
+            $query->where('title', 'ILIKE', '%' . $data['title'] . '%');
+        }
+        if (isset($data['city_id']) && $data['city_id'] != null) {
+            $query->orWhere('city_id', $data['city_id']);
+        }
+        if (isset($data['type_id']) && $data['type_id'] != null) {
+            $query->orWhere('type_id', $data['type_id']);
+        }
+        if (isset($data['experience']) && $data['experience'] != null) {
+            $query->orWhere('experience', $data['experience']);
+        }
+        if (isset($data['category_id']) && $data['category_id'] != null) {
+            $query->orWhere('category_id', $data['category_id']);
+        }
+        $searchData = $query->orderBy('title', 'ASC')->paginate(8);;
         return view('frontend.search', compact('searchData', 'title'));
     }
     public function jobTypes()

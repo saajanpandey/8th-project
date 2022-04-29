@@ -13,6 +13,8 @@ class Employer extends Authenticatable
 
     protected $table = 'employers';
 
+    protected $guard = 'employer';
+
     protected $fillable = ['first_name', 'last_name', 'company_name', 'email', 'contact', 'image', 'pan_number', 'status', 'pan_image', 'website', 'location', 'city_id', 'description', 'password'];
 
     protected $hidden = [

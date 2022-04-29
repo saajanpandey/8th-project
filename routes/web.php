@@ -21,9 +21,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
 
@@ -73,8 +71,10 @@ Route::group(['prefix' => 'employer'], function () {
     Route::post('/login', [EmployerLoginController::class, 'employerLogin'])->name('employer.login');
     // Route::view('/dashboard', 'employer.dashBoard')->name('employer.dash');
 
-    Route::group(['middleware' => 'employeer', 'middleware' => 'auth:employer'], function () {
-        Route::view('/dashboard', 'employer.dashBoard')->name('employer.dash');
+    Route::group(['middleware' => 'auth:employer'], function () {
+        // Route::view('/dashboard', 'employer.dashBoard')->name('employer.dash');
+        Route::get('/dashboard', [EmployerLoginController::class, 'dashboard'])->name('employer.dash');
+
         Route::get('/logout', [EmployerLoginController::class, 'logout'])->name('employer.logout');
 
         Route::get('/jobs', [JobController::class, 'index'])->name('job.index');

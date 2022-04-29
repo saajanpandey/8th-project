@@ -1,4 +1,5 @@
 @extends('layouts.frontend')
+@inject('welcome', 'App\Http\Controllers\welcome\WelcomeController')
 @section('title', 'About Us')
 @section('contents')
     <section class="section-hero overlay inner-page bg-image" style="background-image: url('/frontend/images/hero_1.jpg');"
@@ -16,39 +17,41 @@
         </div>
     </section>
 
-    <section class="py-5 bg-image overlay-primary fixed overlay" id="next-section" style="">
+    <section class="py-5 bg-image overlay-primary fixed overlay" id="next" style="">
         <div class="container">
             <div class="row mb-5 justify-content-center">
                 <div class="col-md-7 text-center">
                     <h2 class="section-title mb-2 text-white">JobFinder Site Stats</h2>
+                    {{-- <p class="lead text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita unde
+                        officiis recusandae sequi excepturi corrupti.</p> --}}
                 </div>
             </div>
             <div class="row pb-0 block__19738 section-counter">
 
                 <div class="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
                     <div class="d-flex align-items-center justify-content-center mb-2">
-                        <strong class="number" data-number="1930">0</strong>
+                        <strong class="number" data-number="{{ $welcome->candidates() }}">0</strong>
                     </div>
                     <span class="caption">Candidates</span>
                 </div>
 
                 <div class="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
                     <div class="d-flex align-items-center justify-content-center mb-2">
-                        <strong class="number" data-number="54">0</strong>
+                        <strong class="number" data-number="{{ $welcome->jobPosted() }}">0</strong>
                     </div>
                     <span class="caption">Jobs Posted</span>
                 </div>
 
-                <div class="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
+                {{-- <div class="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
                     <div class="d-flex align-items-center justify-content-center mb-2">
-                        <strong class="number" data-number="120">0</strong>
+                        <strong class="number" data-number="">0</strong>
                     </div>
                     <span class="caption">Jobs Filled</span>
-                </div>
+                </div> --}}
 
                 <div class="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
                     <div class="d-flex align-items-center justify-content-center mb-2">
-                        <strong class="number" data-number="550">0</strong>
+                        <strong class="number" data-number="{{ $welcome->companies() }}">0</strong>
                     </div>
                     <span class="caption">Companies</span>
                 </div>

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\employer;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EmployerLoginRequest;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class EmployerLoginController extends Controller
 {
@@ -20,10 +20,9 @@ class EmployerLoginController extends Controller
     {
         $remember_me = $request->has('remember_me') ? true : false;
         if (Auth::guard('employer')->attempt(['email' => $request->email, 'password' => $request->password, 'status' => '1'], $remember_me,)) {
-
-            return redirect()->intended('/employer/dashboard');
+            return redirect()->route('employer.dash');
         }
-        return back()->withInput($request->only('email', 'remember_me'))->with('unsuccess', 'The given data is invalid.');
+        return redirect()->route('employer.view')->withInput($request->only('email', 'remember_me'))->with('unsuccess', 'The given data is invalid.');
     }
     protected function guard()
     {
@@ -33,8 +32,15 @@ class EmployerLoginController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect()->intended('/employer/login');
+        return redirect()->route('employer.view');
         // ->with('unsuccess', 'Logout Successfully');
 
+    }
+    public function dashboard()
+    {
+        if (Auth::check()) {
+            return view('employer.dashBoard');
+        }
+        return redirect()->route('employer.view')->with('unsuccess', 'The given data is invalid.');
     }
 }

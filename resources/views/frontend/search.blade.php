@@ -1,12 +1,12 @@
 @extends('layouts.frontend')
-@section('title', 'Searched Job')
+@section('title', 'Job Search')
 @section('contents')
     <section class="section-hero overlay inner-page bg-image" style="background-image: url('/frontend/images/search.jpeg');"
         id="home-section">
         <div class="container">
             <div class="row">
                 <div class="col-md-7">
-                    <h1 class="text-white font-weight-bold">Search for {{ $title }}</h1>
+                    <h1 class="text-white font-weight-bold">Job Search</h1>
                 </div>
             </div>
         </div>
